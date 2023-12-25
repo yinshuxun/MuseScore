@@ -47,6 +47,7 @@ using namespace mu::framework;
 using namespace mu::actions;
 
 static const mu::Uri NOTATION_PAGE_URI("musescore://notation");
+static const mu::Uri PUBLISH_PAGE_URI("musescore://publish");
 static const mu::Uri HOME_PAGE_URI("musescore://home");
 static const mu::Uri NEW_SCORE_URI("musescore://project/newscore");
 static const mu::Uri PROJECT_PROPERTIES_URI("musescore://project/properties");
@@ -222,7 +223,7 @@ Ret ProjectActionsController::openProject(const io::path_t& givenPath, const QSt
 
     //! Step 2. If the project is already open in the current window, then just switch to showing the notation
     if (isProjectOpened(actualPath)) {
-        return openPageIfNeed(NOTATION_PAGE_URI);
+        return openPageIfNeed(PUBLISH_PAGE_URI);
     }
 
     //! Step 3. Check, if the project already opened in another window, then activate the window with the project
@@ -318,7 +319,7 @@ Ret ProjectActionsController::doOpenProject(const io::path_t& filePath)
 
     globalContext()->setCurrentProject(project);
 
-    return openPageIfNeed(NOTATION_PAGE_URI);
+    return openPageIfNeed(PUBLISH_PAGE_URI);
 }
 
 Ret ProjectActionsController::doOpenCloudProject(const io::path_t& filePath, const CloudProjectInfo& info, bool isOwner)
@@ -345,7 +346,7 @@ Ret ProjectActionsController::doOpenCloudProject(const io::path_t& filePath, con
 
     globalContext()->setCurrentProject(project);
 
-    return openPageIfNeed(NOTATION_PAGE_URI);
+    return openPageIfNeed(PUBLISH_PAGE_URI);
 }
 
 void ProjectActionsController::downloadAndOpenCloudProject(int scoreId, const QString& hash, const QString& secret, bool isOwner)
@@ -478,7 +479,7 @@ Ret ProjectActionsController::openScoreFromMuseScoreCom(const QUrl& url)
 
         // either in this instance
         if (isProjectOpened(projectPath)) {
-            return openPageIfNeed(NOTATION_PAGE_URI);
+            return openPageIfNeed(PUBLISH_PAGE_URI);
         }
 
         // or in another one
@@ -588,7 +589,7 @@ void ProjectActionsController::newProject()
     Ret ret = interactive()->open(NEW_SCORE_URI).ret;
 
     if (ret) {
-        ret = openPageIfNeed(NOTATION_PAGE_URI);
+        ret = openPageIfNeed(PUBLISH_PAGE_URI);
     }
 
     if (!ret) {
