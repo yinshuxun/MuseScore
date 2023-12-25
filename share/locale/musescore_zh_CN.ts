@@ -9889,12 +9889,12 @@ This action will not delete any of your scores.</source>
     <message>
         <location filename="../../src/appshell/view/internal/maintoolbarmodel.cpp" line="92"/>
         <source>Publish</source>
-        <translation>发布</translation>
+        <translation>播放器</translation>
     </message>
     <message>
         <location filename="../../src/appshell/view/internal/maintoolbarmodel.cpp" line="95"/>
         <source>DevTools</source>
-        <translation>开发工具</translation>
+        <translation>开发的工具</translation>
     </message>
     <message>
         <location filename="../../src/appshell/qml/Main.wasm.qml" line="36"/>
